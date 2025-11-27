@@ -1,0 +1,41 @@
+base_model_name: "mistralai/Mistral-7B-v0.1"
+labels:
+  - very_bearish
+  - bearish
+  - neutral
+  - bullish
+  - very_bullish
+data:
+  train_file: "data/processed/sentiment_train.parquet"
+  eval_file: "data/processed/sentiment_eval.parquet"
+  text_column: "text"
+  label_column: "label"
+  max_length: 256
+training:
+  output_dir: "checkpoints/fingpt-sentiment-v1"
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 1
+  learning_rate: 2.0e-05
+  weight_decay: 0.01
+  warmup_steps: 100
+  logging_steps: 10
+  eval_steps: 100
+  save_steps: 500
+  save_total_limit: 2
+  lr_scheduler_type: "linear"
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  lora_target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+  gradient_checkpointing: false
+  use_bf16: false
+  seed: 42
+hardware:
+  use_4bit: false
+  device_map: "auto"
