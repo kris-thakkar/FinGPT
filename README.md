@@ -82,3 +82,7 @@ You can override the config path for the API by setting `FINGPT_CONFIG=/path/to/
 - Adjust `base_model_name` to point to your chosen Hugging Face model (e.g., Llama, Mistral).
 - Edit `training` fields to tune epochs, batch sizes, learning rate, and LoRA hyperparameters.
 - Set `hardware.use_4bit` to `true` to enable 4-bit quantization (requires `bitsandbytes`).
+
+## Quickstart
+
+For a concise, step-by-step walkthrough (including dataset prep, training, and serving), see [docs/quickstart.md](docs/quickstart.md).
